@@ -23,9 +23,10 @@ defmodule CreaGraphy.AccountsFixtures do
     user
   end
 
-  def extract_user_token(fun) do
-    {:ok, captured} = fun.(&"[TOKEN]#{&1}[TOKEN]")
-    [_, token, _] = String.split(captured.body, "[TOKEN]")
-    token
+  def extract_user_token(url) do
+    url
+    |> String.split("/")
+    |> Enum.reverse()
+    |> hd()
   end
 end

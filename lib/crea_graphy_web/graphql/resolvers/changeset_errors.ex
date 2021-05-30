@@ -1,4 +1,4 @@
-defmodule CreaGraphyWeb.Graphql.Resolvers.Errors do
+defmodule CreaGraphyWeb.Graphql.Resolvers.ChangesetErrors do
   @moduledoc false
   def error_details(changeset) do
     Ecto.Changeset.traverse_errors(changeset, fn {msg, opts} ->

@@ -9,9 +9,9 @@ defmodule CreaGraphyWeb.Graphql.Schema do
     import_fields(:accounts_queries)
   end
 
-  # mutation do
-  # import_fields(:_NAME_mutations)
-  # end
+  mutation do
+    import_fields(:accounts_mutations)
+  end
 
   def context(ctx) do
     loader =

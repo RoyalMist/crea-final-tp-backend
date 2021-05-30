@@ -24,5 +24,5 @@ WORKDIR /opt/crea
 COPY --chown=nobody:nobody ./dkim/private-key.pem .
 USER nobody:nobody
 EXPOSE 4000
-ENTRYPOINT ["bin/graphy"]
+ENTRYPOINT ["bin/api"]
 CMD ["start"]

@@ -119,8 +119,6 @@ jobs:
         ports:
           - 5432:5432
     steps:
-      - name: Install packages
-        run: sudo apt update && sudo apt install imagemagick webp wkhtmltopdf
       - name: Checkout
         uses: actions/checkout@v2
         with:

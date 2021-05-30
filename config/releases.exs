@@ -58,7 +58,7 @@ config :crea_graphy, CreaGraphyWeb.Endpoint,
 #####################################################################
 # Messaging
 #####################################################################
-config :crea_graphy, BazzileCloud.Mail,
+config :crea_graphy, CreaCloud.Mail,
   relay: "127.0.0.1",
   port: 2525,
   ssl: false,
@@ -67,7 +67,7 @@ config :crea_graphy, BazzileCloud.Mail,
   retries: 2,
   no_mx_lookups: false,
   dkim: [
-    s: "al",
-    d: "alpchemist.ch",
+    s: "at",
+    d: "alpchemist.com",
     private_key: {:pem_plain, File.read!("/opt/crea/private-key.pem")}
   ]

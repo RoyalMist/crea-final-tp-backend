@@ -15,6 +15,7 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
+config :absinthe, schema: CreaGraphyWeb.Graphql.Schema
 config :phoenix, :json_library, Jason
 
 import_config "#{Mix.env()}.exs"

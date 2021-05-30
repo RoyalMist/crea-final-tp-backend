@@ -46,6 +46,8 @@ secret_key =
     You can generate one by calling: mix phx.gen.secret
     """
 
+config :crea_graphy, salt: secret_key
+
 config :crea_graphy, CreaGraphyWeb.Endpoint,
   server: true,
   secret_key_base: secret_key,

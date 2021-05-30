@@ -7,6 +7,16 @@ defmodule CreaGraphy.Accounts do
   alias CreaGraphy.Repo
   alias CreaGraphy.Accounts.{User, UserToken, UserNotifier}
 
+  ## Dataloader
+
+  def datasource() do
+    Dataloader.Ecto.new(Repo, query: &query/2)
+  end
+
+  def query(queryable, _) do
+    queryable
+  end
+
   ## Database getters
 
   @doc """
@@ -217,17 +227,14 @@ defmodule CreaGraphy.Accounts do
   Generates a session token.
   """
   def generate_user_session_token(user) do
-    {token, user_token} = UserToken.build_session_token(user)
-    Repo.insert!(user_token)
-    token
+    UserToken.build_session_token(user)
   end
 
   @doc """
   Gets the user with the given signed token.
   """
-  def get_user_by_session_token(token) do
-    {:ok, query} = UserToken.verify_session_token_query(token)
-    Repo.one(query)
+  def get_user_by_session_token(token, opts \\ [max_age: 28_800]) do
+    UserToken.verify_session_token_query(token, opts)
   end
 
   @doc """

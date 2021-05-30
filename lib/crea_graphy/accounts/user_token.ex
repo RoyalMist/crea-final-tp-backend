@@ -10,7 +10,6 @@ defmodule CreaGraphy.Accounts.UserToken do
   @reset_password_validity_in_days 1
   @confirm_validity_in_days 7
   @change_email_validity_in_days 7
-  @session_validity_in_days 60
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
@@ -29,8 +28,13 @@ defmodule CreaGraphy.Accounts.UserToken do
   tokens do not need to be hashed.
   """
   def build_session_token(user) do
-    token = :crypto.strong_rand_bytes(@rand_size)
-    {token, %CreaGraphy.Accounts.UserToken{token: token, context: "session", user_id: user.id}}
+    Phoenix.Token.sign(
+      CreaGraphyWeb.Endpoint,
+      Application.get_env(:crea_graphy, :salt, "salt"),
+      %{
+        id: user.id
+      }
+    )
   end
 
   @doc """
@@ -38,14 +42,13 @@ defmodule CreaGraphy.Accounts.UserToken do
 
   The query returns the user found by the token.
   """
-  def verify_session_token_query(token) do
-    query =
-      from token in token_and_context_query(token, "session"),
-        join: user in assoc(token, :user),
-        where: token.inserted_at > ago(@session_validity_in_days, "day"),
-        select: user
-
-    {:ok, query}
+  def verify_session_token_query(token, opts) do
+    Phoenix.Token.verify(
+      CreaGraphyWeb.Endpoint,
+      Application.get_env(:crea_graphy, :salt, "salt"),
+      token,
+      opts
+    )
   end
 
   @doc """

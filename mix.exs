@@ -50,7 +50,10 @@ defmodule CreaGraphy.MixProject do
       {:swoosh, "~> 1.3"},
       {:mjml, "~> 1.1"},
       {:absinthe, "~> 1.6"},
-      {:hackney, "~> 1.17"}
+      {:hackney, "~> 1.17"},
+      {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.1", only: [:dev, :test], runtime: false},
+      {:sobelow, "~> 0.11", only: [:dev, :test], runtime: false}
     ]
   end
 

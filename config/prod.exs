@@ -1,4 +1,4 @@
 use Mix.Config
 
-config :logger, level: :info
+config :logger, level: :warn
 config :crea_graphy, CreaCloud.Mail, adapter: Swoosh.Adapters.SMTP

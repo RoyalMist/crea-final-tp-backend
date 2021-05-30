@@ -1,32 +1,51 @@
 defmodule CreaGraphy.Application do
-  # See https://hexdocs.pm/elixir/Application.html
-  # for more information on OTP Applications
   @moduledoc false
-
   use Application
 
   def start(_type, _args) do
     children = [
-      # Start the Ecto repository
       CreaGraphy.Repo,
-      # Start the Telemetry supervisor
       CreaGraphyWeb.Telemetry,
-      # Start the PubSub system
       {Phoenix.PubSub, name: CreaGraphy.PubSub},
-      # Start the Endpoint (http/https)
       CreaGraphyWeb.Endpoint
-      # Start a worker by calling: CreaGraphy.Worker.start_link(arg)
-      # {CreaGraphy.Worker, arg}
     ]
 
-    # See https://hexdocs.pm/elixir/Supervisor.html
-    # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: CreaGraphy.Supervisor]
-    Supervisor.start_link(children, opts)
+    children =
+      if Application.get_env(:crea_graphy, CreaCloud.Mail) |> Keyword.fetch!(:adapter) ==
+           Swoosh.Adapters.SMTP do
+        children ++
+          [
+            %{
+              id: :gen_smtp_server,
+              start:
+                {:gen_smtp_server, :start,
+                 [
+                   :smtp_server_example,
+                   [
+                     domain: Application.get_env(:crea_graphy, :domain),
+                     address: {127, 0, 0, 1},
+                     sessionoptions: [
+                       allow_bare_newlines: :ignore,
+                       hostname: Application.get_env(:crea_graphy, :domain),
+                       callbackoptions: [relay: true]
+                     ]
+                   ]
+                 ]}
+            }
+          ]
+      else
+        children
+      end
+
+    start = Supervisor.start_link(children, strategy: :one_for_one, name: CreaGraphy.Supervisor)
+
+    if Application.get_env(:crea_graphy, :auto_migrate, false) do
+      CreaCloud.Db.migrate()
+    end
+
+    start
   end
 
-  # Tell Phoenix to update the endpoint configuration
-  # whenever the application is updated.
   def config_change(changed, _new, removed) do
     CreaGraphyWeb.Endpoint.config_change(changed, removed)
     :ok

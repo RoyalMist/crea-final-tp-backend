@@ -1,0 +1,21 @@
+<mjml>
+  <mj-body background-color="#E1E8ED">
+    <mj-section padding-bottom="0px" background-color="#fcfcfc">
+      <mj-column width="100%">
+        <mj-text align="center" font-size="40px" color="#DC2626" font-family="Helvetica Neue" font-weight="600">Bienvenue sur l'API Crea!</mj-text>
+        <mj-divider padding-top="20px" padding-bottom="0" padding-left="0" padding-right="0" border-width="1px" border-color="#f8f8f8"></mj-divider>
+      </mj-column>
+    </mj-section>
+    <mj-section background-color="white">
+      <mj-column width="500px">
+        <mj-text align="left" font-size="16px" color="grey" font-weight="200" line-height="1.5">Salut {{ name }},</mj-text>
+        <mj-text align="left" font-size="16px" color="grey" font-weight="200" line-height="1.5">Merci pour ton inscription.</mj-text>
+        <mj-text align="left" font-size="16px" color="grey" font-weight="200" line-height="1.5">Une dernière étape, confirmes ton adresse mail en cliquant sur le boutton.</mj-text>
+        <mj-text align="left" font-size="16px" color="grey" font-weight="200" line-height="1.5">À très vite.</mj-text>
+        <mj-button align="center" font-size="22px" href="{{ url }}" font-weight="bold" background-color="#DC2626" border-radius="10px" color="#ffffff" font-family="Helvetica Neue">
+          Valides ton email
+        </mj-button>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

@@ -1,0 +1,10 @@
+**/.elixir_ls/
+**/_build/
+**/.vscode/
+**/.git/
+**/.github/
+**/.gitignore/
+**/assets/
+**/deps/
+**/test/
+README.md

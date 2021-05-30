@@ -1,8 +1,10 @@
 /_build/
+/.elixir_ls/
 /cover/
 /deps/
+/release/
 /doc/
-/.fetch
+/.fetch/
 erl_crash.dump
 *.ez
 crea_graphy-*.tar

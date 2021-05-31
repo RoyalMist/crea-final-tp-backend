@@ -7,11 +7,11 @@ defmodule CreaGraphy.Repo.Migrations.CreateArticles do
       add :title, :string
       add :body, :text
       add :tags, {:array, :string}
-      add :author, references(:users, on_delete: :nothing, type: :binary_id)
+      add :user_id, references(:users, on_delete: :nothing, type: :binary_id)
 
       timestamps()
     end
 
-    create index(:articles, [:author])
+    create index(:articles, [:user_id])
   end
 end

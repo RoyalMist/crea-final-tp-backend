@@ -1,6 +1,6 @@
 defmodule CreaGraphy.BlogTest do
   use CreaGraphy.DataCase
-
+  import CreaGraphy.AccountsFixtures
   alias CreaGraphy.Blog
 
   describe "articles" do
@@ -11,9 +11,12 @@ defmodule CreaGraphy.BlogTest do
     @invalid_attrs %{body: nil, tags: nil, title: nil}
 
     def article_fixture(attrs \\ %{}) do
+      user = user_fixture()
+
       {:ok, article} =
         attrs
         |> Enum.into(@valid_attrs)
+        |> Enum.into(%{user_id: user.id})
         |> Blog.create_article()
 
       article
@@ -30,7 +33,11 @@ defmodule CreaGraphy.BlogTest do
     end
 
     test "create_article/1 with valid data creates a article" do
-      assert {:ok, %Article{} = article} = Blog.create_article(@valid_attrs)
+      user = user_fixture()
+
+      assert {:ok, %Article{} = article} =
+               Blog.create_article(Map.merge(@valid_attrs, %{user_id: user.id}))
+
       assert article.body == "some body"
       assert article.tags == []
       assert article.title == "some title"

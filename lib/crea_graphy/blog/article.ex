@@ -8,7 +8,7 @@ defmodule CreaGraphy.Blog.Article do
     field :body, :string
     field :tags, {:array, :string}
     field :title, :string
-    field :author, :binary_id
+    belongs_to :user, CreaGraphy.Accounts.User
 
     timestamps()
   end
@@ -16,7 +16,7 @@ defmodule CreaGraphy.Blog.Article do
   @doc false
   def changeset(article, attrs) do
     article
-    |> cast(attrs, [:title, :body, :tags])
-    |> validate_required([:title, :body, :tags])
+    |> cast(attrs, [:title, :body, :tags, :user_id])
+    |> validate_required([:title, :body, :tags, :user_id])
   end
 end

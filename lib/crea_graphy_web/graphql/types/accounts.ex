@@ -2,6 +2,7 @@ defmodule CreaGraphyWeb.Graphql.Types.Accounts do
   @moduledoc false
   use Absinthe.Schema.Notation
   alias CreaGraphyWeb.Graphql.Resolvers
+  alias CreaGraphyWeb.Graphql.Middlewares.Authenticate
   import Absinthe.Resolution.Helpers, only: [dataloader: 1]
 
   object :user do

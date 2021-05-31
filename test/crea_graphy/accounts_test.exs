@@ -96,7 +96,7 @@ defmodule CreaGraphy.AccountsTest do
   describe "change_user_registration/2" do
     test "returns a changeset" do
       assert %Ecto.Changeset{} = changeset = Accounts.change_user_registration(%User{})
-      assert changeset.required == [:password, :email]
+      assert changeset.required == [:name, :password, :email]
     end
 
     test "allows fields to be set" do
@@ -345,9 +345,7 @@ defmodule CreaGraphy.AccountsTest do
   describe "get_user_by_reset_password_token/1" do
     setup do
       user = user_fixture()
-
       token = extract_user_token(Accounts.deliver_user_reset_password_instructions(user))
-
       %{user: user, token: token}
     end
 

@@ -54,8 +54,7 @@ config :crea_graphy, CreaGraphyWeb.Endpoint,
   secret_key_base: secret_key,
   url: [host: "#{app_domain}", scheme: "#{app_scheme}", port: app_port],
   http: [
-    port: 4000,
-    transport_options: [socket_opts: [:inet6]]
+    port: 4000
   ]
 
 #####################################################################

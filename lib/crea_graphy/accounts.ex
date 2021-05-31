@@ -245,7 +245,7 @@ defmodule CreaGraphy.Accounts do
   def deliver_email_confirmation_instructions(%User{confirmed_at: nil} = user) do
     {encoded_token, user_token} = UserToken.build_email_token(user, "confirm")
     Repo.insert!(user_token)
-    url = "#{Application.get_env(:crea_graphy, :confirm_email_url, "URL")}/#{encoded_token}"
+    url = "#{encoded_token}"
     UserNotifier.deliver_confirmation_instructions(user, url)
   end
 
@@ -290,7 +290,7 @@ defmodule CreaGraphy.Accounts do
     {encoded_token, user_token} = UserToken.build_email_token(user, "reset_password")
     Repo.insert!(user_token)
 
-    url = "#{Application.get_env(:crea_graphy, :reset_password_url, "URL")}/#{encoded_token}"
+    url = "#{encoded_token}"
     UserNotifier.deliver_reset_password_instructions(user, url)
   end
 

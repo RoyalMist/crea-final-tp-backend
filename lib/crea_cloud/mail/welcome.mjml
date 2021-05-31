@@ -10,10 +10,10 @@
       <mj-column width="500px">
         <mj-text align="left" font-size="16px" color="grey" font-weight="200" line-height="1.5">Salut {{ name }},</mj-text>
         <mj-text align="left" font-size="16px" color="grey" font-weight="200" line-height="1.5">Merci pour ton inscription.</mj-text>
-        <mj-text align="left" font-size="16px" color="grey" font-weight="200" line-height="1.5">Une dernière étape, confirmes ton adresse mail en cliquant sur le boutton.</mj-text>
+        <mj-text align="left" font-size="16px" color="grey" font-weight="200" line-height="1.5">Une dernière étape, confirmes ton adresse mail en utilisant le code ci dessous dans l'API.</mj-text>
         <mj-text align="left" font-size="16px" color="grey" font-weight="200" line-height="1.5">À très vite.</mj-text>
-        <mj-button align="center" font-size="22px" href="{{ url }}" font-weight="bold" background-color="#DC2626" border-radius="10px" color="#ffffff" font-family="Helvetica Neue">
-          Valides ton email
+        <mj-button align="center" font-size="22px" font-weight="bold" background-color="#DC2626" border-radius="10px" color="#ffffff" font-family="Helvetica Neue">
+          {{ url }}
         </mj-button>
       </mj-column>
     </mj-section>

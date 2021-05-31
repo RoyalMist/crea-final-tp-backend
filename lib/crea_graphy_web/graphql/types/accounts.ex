@@ -43,7 +43,7 @@ defmodule CreaGraphyWeb.Graphql.Types.Accounts do
     @desc "Confirm a user's email with the provided token"
     field :accounts_confirm_email, non_null(:string) do
       arg(:token, non_null(:string))
-      resolve(&Resolvers.Accounts.confirm_user_email/3)
+      resolve(&Resolvers.Accounts.confirm_user/3)
     end
 
     @desc "Reset the password for the given token"

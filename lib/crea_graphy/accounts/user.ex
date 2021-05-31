@@ -9,6 +9,7 @@ defmodule CreaGraphy.Accounts.User do
     field :email, :string
     field :password, :string, virtual: true
     field :hashed_password, :string
+    field :name, :string
     field :confirmed_at, :naive_datetime
 
     timestamps()
@@ -33,9 +34,11 @@ defmodule CreaGraphy.Accounts.User do
   """
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:email, :password])
+    |> cast(attrs, [:email, :password, :name])
     |> validate_email()
     |> validate_password(opts)
+    |> validate_required([:name])
+    |> validate_length(:name, min: 3, max: 30)
   end
 
   defp validate_email(changeset) do

@@ -7,6 +7,7 @@ master_ip = System.get_env("MASTER_IP") || "127.0.0.1"
 
 config :crea_graphy,
   clustering: true,
+  auto_migrate: true,
   master_ip: master_ip
 
 #####################################################################

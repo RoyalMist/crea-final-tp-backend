@@ -11,7 +11,7 @@ defmodule CreaCloud.Mail do
     |> from({"Crea", "contact@alpchemist.com"})
     |> subject("Bienvenue sur l'api CREA!")
     |> html_body(Welcome.render(opts))
-    |> deliver
+    |> deliver()
     |> log_mail()
   end
 
@@ -21,7 +21,7 @@ defmodule CreaCloud.Mail do
     |> from({"Crea", "contact@alpchemist.com"})
     |> subject("Ton mot de passe.")
     |> html_body(ForgotPassword.render(opts))
-    |> deliver
+    |> deliver()
     |> log_mail()
   end
 

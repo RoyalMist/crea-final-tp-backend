@@ -7,12 +7,16 @@ defmodule CreaGraphyWeb.Graphql.Types.Blog do
 
   object :article do
     field(:id, :id)
+    field(:body, :string)
+    field(:tags, list_of(:string))
+    field(:title, :string)
+    field(:user, :user)
   end
 
-  object :_NAME_queries do
-    @desc "Description"
-    field :_NAME_, :_RETURN_TYPE_ do
-      # resolve(&_RESOLVER_FUNCTION_/3)
+  object :blog_queries do
+    @desc "List all articles"
+    field :articles_list, list_of(:article) do
+      resolve(&Resolvers.Blog.list/3)
     end
   end
 

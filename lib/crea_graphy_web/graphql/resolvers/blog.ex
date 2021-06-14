@@ -44,8 +44,34 @@ defmodule CreaGraphyWeb.Graphql.Resolvers.Blog do
         res ->
           res
       end
-    catch
-      e -> e
+    rescue
+      e -> {:error, "forbidden"}
+    end
+  end
+
+  def delete(_, attrs, %{context: %{current_user: user}}) do
+    try do
+      article = Blog.get_article!(attrs.id)
+
+      if article.user_id != user.id do
+        raise "forbidden"
+      end
+
+      case Blog.delete_article(article) do
+        {:error, changeset} ->
+          {
+            :error,
+            %{
+              message: "Impossible to delete article",
+              details: ChangesetErrors.error_details(changeset)
+            }
+          }
+
+        res ->
+          res
+      end
+    rescue
+      e -> {:error, "forbidden"}
     end
   end
 end

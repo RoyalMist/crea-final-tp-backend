@@ -30,7 +30,7 @@ defmodule CreaGraphyWeb.Graphql.Types.Blog do
       resolve(&Resolvers.Blog.create/3)
     end
 
-    @desc "Create an article belonging to the logged in user"
+    @desc "Update an article belonging to the logged in user"
     field :articles_update, :article do
       arg(:id, non_null(:id))
       arg(:body, :string)
@@ -40,6 +40,11 @@ defmodule CreaGraphyWeb.Graphql.Types.Blog do
       resolve(&Resolvers.Blog.update/3)
     end
 
-    # TODO delete
+    @desc "Delete an article belonging to the logged in user"
+    field :articles_delete, :article do
+      arg(:id, non_null(:id))
+      middleware(Authenticate)
+      resolve(&Resolvers.Blog.delete/3)
+    end
   end
 end

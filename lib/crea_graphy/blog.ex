@@ -28,7 +28,7 @@ defmodule CreaGraphy.Blog do
 
   """
   def list_articles do
-    Repo.all(Article)
+    Repo.all(from a in Article, order_by: [desc: a.inserted_at])
   end
 
   @doc """

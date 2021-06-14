@@ -1,5 +1,6 @@
 defmodule CreaGraphyWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :crea_graphy
+  use Absinthe.Phoenix.Endpoint
 
   socket "/socket", CreaGraphyWeb.UserSocket,
     websocket: true,

@@ -7,7 +7,8 @@ defmodule CreaGraphy.Application do
       CreaGraphy.Repo,
       CreaGraphyWeb.Telemetry,
       {Phoenix.PubSub, name: CreaGraphy.PubSub},
-      CreaGraphyWeb.Endpoint
+      CreaGraphyWeb.Endpoint,
+      {Absinthe.Subscription, [CreaGraphyWeb.Endpoint]}
     ]
 
     start = Supervisor.start_link(children, strategy: :one_for_one, name: CreaGraphy.Supervisor)

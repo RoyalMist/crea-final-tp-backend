@@ -6,6 +6,16 @@ defmodule CreaGraphy.Chat do
   import Ecto.Query, warn: false
   alias CreaGraphy.Repo
 
+  ## Dataloader
+
+  def datasource() do
+    Dataloader.Ecto.new(Repo, query: &query/2)
+  end
+
+  def query(queryable, _) do
+    queryable
+  end
+
   alias CreaGraphy.Chat.Message
 
   @doc """
@@ -18,7 +28,7 @@ defmodule CreaGraphy.Chat do
 
   """
   def list_messages do
-    Repo.all(Message)
+    Repo.all(from m in Message, order_by: [desc: m.inserted_at])
   end
 
   @doc """

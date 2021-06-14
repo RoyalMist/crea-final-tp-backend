@@ -9,10 +9,6 @@ defmodule CreaGraphyWeb.Router do
   scope "/" do
     pipe_through :api
 
-    if Mix.env() == :dev do
-      forward "/mailbox", Plug.Swoosh.MailboxPreview
-    end
-
     forward "/graphiql", Absinthe.Plug.GraphiQL,
       interface: :playground,
       socket: CreaGraphyWeb.UserSocket

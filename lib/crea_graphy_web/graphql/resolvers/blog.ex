@@ -13,7 +13,7 @@ defmodule CreaGraphyWeb.Graphql.Resolvers.Blog do
         {
           :error,
           %{
-            message: "Reason",
+            message: "Impossible to create article",
             details: ChangesetErrors.error_details(changeset)
           }
         }
@@ -26,6 +26,10 @@ defmodule CreaGraphyWeb.Graphql.Resolvers.Blog do
   def update(_, attrs, %{context: %{current_user: user}}) do
     try do
       article = Blog.get_article!(attrs.id)
+
+      if article.user_id != user.id do
+        raise "forbidden"
+      end
 
       case Blog.update_article(article, Map.merge(attrs, %{user_id: user.id})) do
         {:error, changeset} ->

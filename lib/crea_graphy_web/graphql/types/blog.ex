@@ -23,12 +23,19 @@ defmodule CreaGraphyWeb.Graphql.Types.Blog do
   object :blog_mutations do
     @desc "Create an article belonging to the logged in user"
     field :articles_create, :article do
+      arg(:body, non_null(:string))
+      arg(:tags, list_of(:string))
+      arg(:title, non_null(:string))
       middleware(Authenticate)
       resolve(&Resolvers.Blog.create/3)
     end
 
     @desc "Create an article belonging to the logged in user"
     field :articles_update, :article do
+      arg(:id, non_null(:id))
+      arg(:body, :string)
+      arg(:tags, list_of(:string))
+      arg(:title, :string)
       middleware(Authenticate)
       resolve(&Resolvers.Blog.update/3)
     end

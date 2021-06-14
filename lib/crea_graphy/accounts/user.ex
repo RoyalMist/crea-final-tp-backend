@@ -11,6 +11,7 @@ defmodule CreaGraphy.Accounts.User do
     field :hashed_password, :string
     field :name, :string
     field :confirmed_at, :naive_datetime
+    has_many :articles, CreaGraphy.Blog.Article
 
     timestamps()
   end

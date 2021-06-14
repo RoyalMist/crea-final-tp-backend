@@ -45,7 +45,7 @@ defmodule CreaGraphyWeb.Graphql.Resolvers.Blog do
           res
       end
     rescue
-      e -> {:error, "forbidden"}
+      _ -> {:error, "forbidden"}
     end
   end
 
@@ -71,7 +71,7 @@ defmodule CreaGraphyWeb.Graphql.Resolvers.Blog do
           res
       end
     rescue
-      e -> {:error, "forbidden"}
+      _ -> {:error, "forbidden"}
     end
   end
 end

@@ -39,5 +39,7 @@ defmodule CreaGraphyWeb.Graphql.Types.Blog do
       middleware(Authenticate)
       resolve(&Resolvers.Blog.update/3)
     end
+
+    # TODO delete
   end
 end

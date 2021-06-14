@@ -35,25 +35,5 @@ defmodule CreaGraphyWeb.Graphql.Types.Accounts do
       arg(:password, non_null(:string))
       resolve(&Resolvers.Accounts.signin/3)
     end
-
-    @desc "Ask for a reset password link for the given email"
-    field :accounts_ask_reset_password, non_null(:string) do
-      arg(:email, non_null(:string))
-      resolve(&Resolvers.Accounts.ask_reset_password_email/3)
-    end
-
-    @desc "Confirm a user's email with the provided token"
-    field :accounts_confirm_email, non_null(:string) do
-      arg(:token, non_null(:string))
-      resolve(&Resolvers.Accounts.confirm_user/3)
-    end
-
-    @desc "Reset the password for the given token"
-    field :accounts_reset_password, non_null(:string) do
-      arg(:token, non_null(:string))
-      arg(:password, non_null(:string))
-      arg(:password_confirmation, non_null(:string))
-      resolve(&Resolvers.Accounts.reset_password/3)
-    end
   end
 end

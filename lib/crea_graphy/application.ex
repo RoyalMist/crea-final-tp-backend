@@ -10,33 +10,6 @@ defmodule CreaGraphy.Application do
       CreaGraphyWeb.Endpoint
     ]
 
-    children =
-      if Application.get_env(:crea_graphy, CreaCloud.Mail) |> Keyword.fetch!(:adapter) ==
-           Swoosh.Adapters.SMTP do
-        children ++
-          [
-            %{
-              id: :gen_smtp_server,
-              start:
-                {:gen_smtp_server, :start,
-                 [
-                   :smtp_server_example,
-                   [
-                     domain: Application.get_env(:crea_graphy, :domain),
-                     address: {127, 0, 0, 1},
-                     sessionoptions: [
-                       allow_bare_newlines: :ignore,
-                       hostname: Application.get_env(:crea_graphy, :domain),
-                       callbackoptions: [relay: true]
-                     ]
-                   ]
-                 ]}
-            }
-          ]
-      else
-        children
-      end
-
     start = Supervisor.start_link(children, strategy: :one_for_one, name: CreaGraphy.Supervisor)
 
     if Application.get_env(:crea_graphy, :auto_migrate, false) do

@@ -9,6 +9,7 @@ defmodule CreaGraphyWeb.Graphql.Types.Accounts do
     field(:id, :id)
     field(:email, :string)
     field(:name, :string)
+    field(:articles, list_of(:article), resolve: dataloader(Accounts))
   end
 
   object :accounts_queries do

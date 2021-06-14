@@ -10,7 +10,7 @@ defmodule CreaGraphyWeb.Graphql.Types.Blog do
     field(:body, :string)
     field(:tags, list_of(:string))
     field(:title, :string)
-    field(:user, :user)
+    field(:user, :user, resolve: dataloader(Blog))
   end
 
   object :blog_queries do
@@ -20,10 +20,17 @@ defmodule CreaGraphyWeb.Graphql.Types.Blog do
     end
   end
 
-  object :_NAME_mutations do
-    @desc "Description"
-    field :_NAME_, :_RETURN_TYPE_ do
-      # resolve(&_RESOLVER_FUNCTION_/3)
+  object :blog_mutations do
+    @desc "Create an article belonging to the logged in user"
+    field :articles_create, :article do
+      middleware(Authenticate)
+      resolve(&Resolvers.Blog.create/3)
+    end
+
+    @desc "Create an article belonging to the logged in user"
+    field :articles_update, :article do
+      middleware(Authenticate)
+      resolve(&Resolvers.Blog.update/3)
     end
   end
 end

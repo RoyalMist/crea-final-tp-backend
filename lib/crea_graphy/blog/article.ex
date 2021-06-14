@@ -17,6 +17,6 @@ defmodule CreaGraphy.Blog.Article do
   def changeset(article, attrs) do
     article
     |> cast(attrs, [:title, :body, :tags, :user_id])
-    |> validate_required([:title, :body, :tags, :user_id])
+    |> validate_required([:title, :body, :user_id])
   end
 end

@@ -1,16 +1,6 @@
 import Config
 
 #####################################################################
-# Cloud
-#####################################################################
-master_ip = System.get_env("MASTER_IP") || "127.0.0.1"
-
-config :crea_graphy,
-  clustering: true,
-  auto_migrate: true,
-  master_ip: master_ip
-
-#####################################################################
 # Database
 #####################################################################
 database_url =
@@ -21,6 +11,8 @@ database_url =
     """
 
 database_pool_size = String.to_integer(System.get_env("DB_POOL_SIZE") || "30")
+
+config :crea_graphy, auto_migrate: true
 
 config :crea_graphy, CreaGraphy.Repo,
   url: database_url,
@@ -56,21 +48,4 @@ config :crea_graphy, CreaGraphyWeb.Endpoint,
   http: [
     port: 4000,
     transport_options: [socket_opts: [:inet6]]
-  ]
-
-#####################################################################
-# Messaging
-#####################################################################
-config :crea_graphy, CreaCloud.Mail,
-  relay: "127.0.0.1",
-  port: 2525,
-  ssl: false,
-  tls: :never,
-  auth: :never,
-  retries: 2,
-  no_mx_lookups: false,
-  dkim: [
-    s: "at",
-    d: "alpchemist.com",
-    private_key: {:pem_plain, File.read!("/opt/crea/private-key.pem")}
   ]

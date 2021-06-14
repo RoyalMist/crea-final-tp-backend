@@ -11,6 +11,5 @@ config :crea_graphy, CreaGraphyWeb.Endpoint,
   http: [port: 4002],
   server: false
 
-config :crea_graphy, CreaCloud.Mail, adapter: Swoosh.Adapters.Test
 config :bcrypt_elixir, :log_rounds, 1
 config :logger, level: :warn

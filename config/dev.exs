@@ -15,7 +15,6 @@ config :crea_graphy, CreaGraphyWeb.Endpoint,
   check_origin: false,
   watchers: []
 
-config :crea_graphy, CreaCloud.Mail, adapter: Swoosh.Adapters.Local
 config :logger, :console, format: "[$level] $message\n"
 config :phoenix, :stacktrace_depth, 20
 config :phoenix, :plug_init_mode, :runtime

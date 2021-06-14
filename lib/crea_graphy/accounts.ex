@@ -5,7 +5,7 @@ defmodule CreaGraphy.Accounts do
 
   import Ecto.Query, warn: false
   alias CreaGraphy.Repo
-  alias CreaGraphy.Accounts.{User, UserToken, UserNotifier}
+  alias CreaGraphy.Accounts.{User, UserToken}
 
   ## Dataloader
 

@@ -16,7 +16,7 @@ defmodule CreaGraphyWeb.Graphql.Types.Blog do
   object :blog_queries do
     @desc "List all articles"
     field :articles_list, list_of(:article) do
-      resolve(&Resolvers.Blog.list/3)
+      resolve(&Resolvers.Blog.list/2)
     end
   end
 
@@ -27,7 +27,7 @@ defmodule CreaGraphyWeb.Graphql.Types.Blog do
       arg(:tags, list_of(:string))
       arg(:title, non_null(:string))
       middleware(Authenticate)
-      resolve(&Resolvers.Blog.create/3)
+      resolve(&Resolvers.Blog.create/2)
     end
 
     @desc "Update an article belonging to the logged in user"
@@ -37,14 +37,14 @@ defmodule CreaGraphyWeb.Graphql.Types.Blog do
       arg(:tags, list_of(:string))
       arg(:title, :string)
       middleware(Authenticate)
-      resolve(&Resolvers.Blog.update/3)
+      resolve(&Resolvers.Blog.update/2)
     end
 
     @desc "Delete an article belonging to the logged in user"
     field :articles_delete, :article do
       arg(:id, non_null(:id))
       middleware(Authenticate)
-      resolve(&Resolvers.Blog.delete/3)
+      resolve(&Resolvers.Blog.delete/2)
     end
   end
 end

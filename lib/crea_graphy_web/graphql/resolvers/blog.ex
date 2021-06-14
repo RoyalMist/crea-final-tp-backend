@@ -3,11 +3,11 @@ defmodule CreaGraphyWeb.Graphql.Resolvers.Blog do
   alias CreaGraphy.Blog
   alias CreaGraphyWeb.Graphql.Resolvers.ChangesetErrors
 
-  def list(_, _, _) do
+  def list(_, _) do
     {:ok, Blog.list_articles()}
   end
 
-  def create(_, attrs, %{context: %{current_user: user}}) do
+  def create(attrs, %{context: %{current_user: user}}) do
     case Blog.create_article(Map.merge(attrs, %{user_id: user.id})) do
       {:error, changeset} ->
         {
@@ -23,7 +23,7 @@ defmodule CreaGraphyWeb.Graphql.Resolvers.Blog do
     end
   end
 
-  def update(_, attrs, %{context: %{current_user: user}}) do
+  def update(attrs, %{context: %{current_user: user}}) do
     try do
       article = Blog.get_article!(attrs.id)
 
@@ -49,7 +49,7 @@ defmodule CreaGraphyWeb.Graphql.Resolvers.Blog do
     end
   end
 
-  def delete(_, attrs, %{context: %{current_user: user}}) do
+  def delete(attrs, %{context: %{current_user: user}}) do
     try do
       article = Blog.get_article!(attrs.id)
 

@@ -16,7 +16,7 @@ defmodule CreaGraphyWeb.Graphql.Types.Accounts do
     @desc "Fetch logged in user's profile"
     field :accounts_profile, :user do
       middleware(Authenticate)
-      resolve(&Resolvers.Accounts.profile/3)
+      resolve(&Resolvers.Accounts.profile/2)
     end
   end
 
@@ -26,14 +26,14 @@ defmodule CreaGraphyWeb.Graphql.Types.Accounts do
       arg(:email, non_null(:string))
       arg(:password, non_null(:string))
       arg(:name, non_null(:string))
-      resolve(&Resolvers.Accounts.signup/3)
+      resolve(&Resolvers.Accounts.signup/2)
     end
 
     @desc "Sign in a user"
     field :accounts_signin, non_null(:string) do
       arg(:email, non_null(:string))
       arg(:password, non_null(:string))
-      resolve(&Resolvers.Accounts.signin/3)
+      resolve(&Resolvers.Accounts.signin/2)
     end
   end
 end

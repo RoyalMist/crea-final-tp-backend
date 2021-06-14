@@ -2,7 +2,7 @@ defmodule CreaGraphyWeb.Graphql.Resolvers.Accounts do
   alias CreaGraphy.Accounts
   alias CreaGraphyWeb.Graphql.Resolvers.ChangesetErrors
 
-  def profile(_, _, %{context: %{current_user: user}}) do
+  def profile(_, %{context: %{current_user: user}}) do
     try do
       {:ok, Accounts.get_user!(user.id)}
     rescue
@@ -10,7 +10,7 @@ defmodule CreaGraphyWeb.Graphql.Resolvers.Accounts do
     end
   end
 
-  def signin(_, %{email: email, password: password}, _) do
+  def signin(%{email: email, password: password}, _) do
     case Accounts.get_user_by_email_and_password(email, password) do
       nil ->
         {:error, "Invalid credentials!"}
@@ -21,7 +21,7 @@ defmodule CreaGraphyWeb.Graphql.Resolvers.Accounts do
     end
   end
 
-  def signup(_, args, _) do
+  def signup(args, _) do
     case Accounts.register_user(args) do
       {:error, changeset} ->
         {

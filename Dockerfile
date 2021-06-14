@@ -10,12 +10,13 @@ RUN apk update && \
     apk upgrade && \
     apk add --no-cache \
     ca-certificates \
-    ncurses-libs \
+    ncurses-libs && \
     update-ca-certificates && \
     tar -xf release.tar -C /opt && \
     rm release.tar && \
     mv /opt/release /opt/crea && \
-    chown -R nobody:nobody /opt/crea
+    chown -R nobody:nobody /opt/crea && \
+    apk del ca-certificates
 WORKDIR /opt/crea
 USER nobody:nobody
 EXPOSE 4000

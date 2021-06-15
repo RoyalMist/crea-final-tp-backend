@@ -8,6 +8,8 @@ defmodule CreaGraphyWeb.Graphql.Types.Chat do
   object :message do
     field(:body, non_null(:string))
     field(:user, :user, resolve: dataloader(Chat))
+    field(:inserted_at, :naive_datetime)
+    field(:updated_at, :naive_datetime)
   end
 
   object :chat_queries do

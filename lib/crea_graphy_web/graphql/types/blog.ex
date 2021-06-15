@@ -10,6 +10,8 @@ defmodule CreaGraphyWeb.Graphql.Types.Blog do
     field(:body, :string)
     field(:tags, list_of(:string))
     field(:title, :string)
+    field(:inserted_at, :naive_datetime)
+    field(:updated_at, :naive_datetime)
     field(:user, :user, resolve: dataloader(Blog))
   end
 

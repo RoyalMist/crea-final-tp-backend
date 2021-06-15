@@ -28,7 +28,7 @@ defmodule CreaGraphy.Chat do
 
   """
   def list_messages do
-    Repo.all(from m in Message, order_by: [desc: m.inserted_at])
+    Repo.all(from m in Message, order_by: [asc: m.inserted_at])
   end
 
   @doc """

@@ -11,7 +11,7 @@ on:
 env:
   ELIXIR_VERSION: 1.12
   OTP_VERSION: 23.2
-  DOCKER_IMAGE: bazzile/crea-graphy
+  DOCKER_IMAGE: royalmist/crea-graphy
 
 jobs:
   test-dependencies:

@@ -21,5 +21,6 @@ defmodule CreaGraphyWeb.Endpoint do
     pass: ["*/*"],
     json_decoder: Phoenix.json_library()
 
+  plug CORSPlug
   plug CreaGraphyWeb.Router
 end

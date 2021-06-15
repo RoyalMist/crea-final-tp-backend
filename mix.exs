@@ -41,6 +41,7 @@ defmodule CreaGraphy.MixProject do
       {:phoenix, "~> 1.5.8"},
       {:phoenix_ecto, "~> 4.1"},
       {:phx_gen_auth, "~> 0.7.0"},
+      {:cors_plug, "~> 2.0"},
       {:ecto_sql, "~> 3.4"},
       {:postgrex, ">= 0.0.0"},
       {:telemetry_metrics, "~> 0.4"},

@@ -8,4 +8,4 @@ Now you can visit [`localhost:4000/graphiql`](http://localhost:4000/graphiql) fr
 
 # Docker
 
-  * Visit [`https://hub.docker.com/repository/docker/royalmist/crea-graphy`](https://hub.docker.com/repository/docker/royalmist/crea-graphy)
+Visit [`https://hub.docker.com/repository/docker/royalmist/crea-graphy`](https://hub.docker.com/repository/docker/royalmist/crea-graphy)

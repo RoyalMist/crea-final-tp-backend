@@ -32,8 +32,6 @@ jobs:
           password: ${{ secrets.DOCKER_TOKEN }}
       - name: Set up Earthly
         run: sudo /bin/sh -c 'wget https://github.com/earthly/earthly/releases/download/v${{ env.EARTHLY_VERSION}}/earthly-linux-amd64 -O /usr/local/bin/earthly && chmod +x /usr/local/bin/earthly'
-      - name: Login to Earthly
-        run: earthly account login --token ${{ secrets.EARTHLY_TOKEN }}
       - name: Base
         run: earthly --ci --remote-cache=${{ env.DOCKER_IMAGE }}:base --push +base
       - name: Lint

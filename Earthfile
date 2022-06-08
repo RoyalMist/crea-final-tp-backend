@@ -70,7 +70,8 @@ docker:
     ENV PHX_HOST="{domain}"
     WORKDIR "/app"
     RUN chown nobody /app
-    COPY --chown nobody:root +build/* . 
+    COPY --chown nobody:root +build/* .
+    RUN chmod +x bin/migrate bin/server bin/start
     USER nobody
     EXPOSE 4000
     CMD ["/app/bin/start"]

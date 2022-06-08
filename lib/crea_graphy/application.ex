@@ -11,13 +11,7 @@ defmodule CreaGraphy.Application do
       {Absinthe.Subscription, [CreaGraphyWeb.Endpoint]}
     ]
 
-    start = Supervisor.start_link(children, strategy: :one_for_one, name: CreaGraphy.Supervisor)
-
-    if Application.get_env(:crea_graphy, :auto_migrate, false) do
-      CreaCloud.Db.migrate()
-    end
-
-    start
+    Supervisor.start_link(children, strategy: :one_for_one, name: CreaGraphy.Supervisor)
   end
 
   def config_change(changed, _new, removed) do

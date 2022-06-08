@@ -11,8 +11,8 @@ defmodule CreaGraphy.MixProject do
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       default_release: :api,
-      releases: releases(),
-      deps: deps()
+      deps: deps(),
+      dialyzer: [plt_add_deps: :app_tree]
     ]
   end
 
@@ -26,21 +26,11 @@ defmodule CreaGraphy.MixProject do
   defp elixirc_paths(:test), do: ["lib", "test/support"]
   defp elixirc_paths(_), do: ["lib"]
 
-  defp releases do
-    [
-      api: [
-        include_executables_for: [:unix],
-        path: "release"
-      ]
-    ]
-  end
-
   defp deps do
     [
       {:bcrypt_elixir, "~> 2.0"},
-      {:phoenix, "~> 1.5.8"},
+      {:phoenix, "~> 1.6"},
       {:phoenix_ecto, "~> 4.1"},
-      {:phx_gen_auth, "~> 0.7.0"},
       {:cors_plug, "~> 2.0"},
       {:ecto_sql, "~> 3.4"},
       {:postgrex, ">= 0.0.0"},
@@ -48,7 +38,7 @@ defmodule CreaGraphy.MixProject do
       {:telemetry_poller, "~> 0.4"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:absinthe, "~> 1.6"},
+      {:absinthe, "~> 1.7"},
       {:absinthe_plug, "~> 1.5"},
       {:absinthe_phoenix, "~> 2.0"},
       {:dataloader, "~> 1.0"},

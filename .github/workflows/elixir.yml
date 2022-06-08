@@ -9,8 +9,8 @@ on:
     branches: [master]
 
 env:
-  ELIXIR_VERSION: 1.12
-  OTP_VERSION: 23.2
+  ELIXIR_VERSION: 1.13
+  OTP_VERSION: 25.0
   DOCKER_IMAGE: royalmist/crea-graphy
 
 jobs:

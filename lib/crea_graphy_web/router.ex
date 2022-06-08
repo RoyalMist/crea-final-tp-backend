@@ -9,7 +9,7 @@ defmodule CreaGraphyWeb.Router do
   scope "/" do
     pipe_through :api
 
-    forward "/graphiql", Absinthe.Plug.GraphiQL,
+    forward "/doc", Absinthe.Plug.GraphiQL,
       interface: :playground,
       socket: CreaGraphyWeb.UserSocket
 
